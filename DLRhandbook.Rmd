@@ -1,0 +1,48 @@
+---
+title: "Domestic Load Rreearch Database Handbook"
+author: "Wiebke Toussaint"
+date: "19 December 2016"
+output: html_document
+---
+
+This handbook assumes that you have access to a live instance of the DLR database on SQL Server.
+
+# Data Overview
+## Parameters monitored
+## Socio-demographic data collected
+### Information about the people
+* Number of people living in house
+* Age of home owner
+* Gender of home owner
+* Level of education of home owner
+* Income of home owner
+* Employment status of home owner
+
+### Information about the dwelling
+* Number of rooms
+* Address
+* GPS coordinates
+* Structure (ceiling or not)
+* Floor area
+* Building materials
+
+### Information about appliances
+
+# Project Timeline 1993 - 2014
+## Sites & number of people surveyed over the history of the project
+## 
+
+# Data Checking
+## Measurement verification
+## Data Validation
+
+# Database Tables
+## Primary Tables
+## Supporting Tables
+## Auxilliary Data
+### Photos
+### Geo-referencing
+
+# Accessing Data 
+
+# Referencing the Dataset
