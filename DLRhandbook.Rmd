@@ -5,10 +5,12 @@ date: "19 December 2016"
 output: html_document
 ---
 
-This handbook assumes that you have access to a live instance of the DLR database on SQL Server.
+This handbook assumes that you have access to a live instance of the DLR database on SQL Server. The development of the DLR programme was driven by the need to measure individuals' load profiles as well as understanding **who** the individuals were. 
 
 # Data Overview
 ## Parameters monitored
+In designing the programme, the cause and effect correlations of previously performed load research studies were mapped and condensed to the parameters that were ultimately monitored in the study.
+
 ## Socio-demographic data collected
 ### Information about the people
 * Number of people living in house
@@ -20,17 +22,53 @@ This handbook assumes that you have access to a live instance of the DLR databas
 
 ### Information about the dwelling
 * Number of rooms
-* Address
+* Street address
 * GPS coordinates
 * Structure (ceiling or not)
 * Floor area
 * Building materials
 
 ### Information about appliances
+* Number of light bulbs in dwelling (does not distinguish energy saving bulbs)
+* Number of people being cooked for
+* Fuel source for cooking (quantities used not captured)
+* Frequency of cooking
 
 # Project Timeline 1993 - 2014
 ## Sites & number of people surveyed over the history of the project
-## 
+## Project Evolution over time
+**1993**   
+|  
+| Project start  
+|  
+**2000**  
+|  
+| added rural  
+| added GPS coordinates (taken at front gate/door of dwelling)  
+| combined Eskom & municipal data sets    
+| consolidated the two existing versions of socio-demographic data collected in the questionnaires  
+|  
+**2004**  
+|  
+| matched prepaid tranasctions with meter numbers to verify household energy consumption  
+| data loggers measured up to 16 channels current & one voltage across all channels    
+| > inferred power from measurement  
+| > errors at low current  
+|  
+**2009**    
+|  
+| data logger format changed
+| > wireless logging  
+| > 1 channel for up to 3 houses  
+| > voltage, current, real power and reactive power recorded  
+| > changed to cts that can handle low current error  
+| did not manage to close calibration loop (ie verifying calibration of individual appliances)  
+|  
+**2012**  
+|  
+| migrated to mobile data capture  
+| added some 'jump driven' loggers to separate out appliances  
+
 
 # Data Checking
 ## Measurement verification
