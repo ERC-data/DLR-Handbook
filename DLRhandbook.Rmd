@@ -1,9 +1,10 @@
 ---
-title: "Domestic Load Rreearch Database Handbook"
+title: "Domestic Load Rresearch Database Handbook"
 author: "Wiebke Toussaint"
 date: "19 December 2016"
-output: html_document
+output: pdf_document
 ---
+--------------------------------
 
 This handbook assumes that you have access to a live instance of the DLR database on SQL Server. The development of the DLR programme was driven by the need to measure individuals' load profiles as well as understanding **who** the individuals were. 
 
@@ -11,8 +12,8 @@ This handbook assumes that you have access to a live instance of the DLR databas
 ## Parameters monitored
 In designing the programme, the cause and effect correlations of previously performed load research studies were mapped and condensed to the parameters that were ultimately monitored in the study.
 
-## Socio-demographic data collected
-### Information about the people
+##  Data collected with questionnaires
+### Socio-demographic data: information about the people
 * Number of people living in house
 * Age of home owner
 * Gender of home owner
@@ -34,8 +35,19 @@ In designing the programme, the cause and effect correlations of previously perf
 * Fuel source for cooking (quantities used not captured)
 * Frequency of cooking
 
+## Load data collected
+
+----------------------
+
 # Project Timeline 1993 - 2014
 ## Sites & number of people surveyed over the history of the project
+On average the DLR project has monitored: 
+
+* 800 households per year
+* with +- 60 households per site
+* over a spread of 13 sites
+* monitoring period 5 years/site for Eskom customers, shorter for municipal customers
+
 ## Project Evolution over time
 **1993**   
 |  
@@ -43,7 +55,7 @@ In designing the programme, the cause and effect correlations of previously perf
 |  
 **2000**  
 |  
-| added rural  
+| added rural households 
 | added GPS coordinates (taken at front gate/door of dwelling)  
 | combined Eskom & municipal data sets    
 | consolidated the two existing versions of socio-demographic data collected in the questionnaires  
@@ -67,20 +79,55 @@ In designing the programme, the cause and effect correlations of previously perf
 **2012**  
 |  
 | migrated to mobile data capture  
-| added some 'jump driven' loggers to separate out appliances  
+| added some 'jump driven' loggers to separate out appliances 
 
+---------------------------
 
 # Data Checking
+## Socio-demographic verification
+The DLR has heavily standardised data treatment. Socio-demographic data was collected in 2 phases. **Phase 1** (pre 2000) caputred on paper was verified with a visual test. For **Phase 2** (post 2000) error checking has been implemented with rules checking on the database. The following validation process has been followed:
+
+* verify if a data source or data capture problem exists
+* correct demographic data if possible by checking the paper source
+* remaining errors are residual and not possible to solve by inspection
+
+### Socio checking rules
+
+
+
 ## Measurement verification
+
+### Site reference database
+Every winter the connectivity has been traced from the data logger to each household to verify the recording channels. From this, a site reference database has been created.
+
 ## Data Validation
 
-# Database Tables
-## Primary Tables
-## Supporting Tables
-## Auxilliary Data
-### Photos
-### Geo-referencing
+----------------------------------
 
-# Accessing Data 
+# Database Structure
+## Database Diagrams (on SQL)
+#### Link Table
+#### PQ Tables
+
+## Tables
+
+### Primary Tables
+### Supporting Tables
+
+## Views
+
+## Stored Procedures
+
+-------------------------------------
+
+# Auxilliary Data
+## Photos
+## Geo-referencing
+
+------------------------------------
+
+# Data Access 
+
+------------------------------------
 
 # Referencing the Dataset
