@@ -2,7 +2,7 @@
 title: "Domestic Load Rresearch Database Handbook"
 author: "Wiebke Toussaint"
 date: "19 December 2016"
-output: pdf_document
+output: html_document
 ---
 --------------------------------
 
@@ -112,6 +112,48 @@ Every winter the connectivity has been traced from the data logger to each house
 ## Tables
 
 ### Primary Tables
+#### dbo.Context
+The context table provides a list of all the projects and project phases that were executed as part of the DLR Programme. A project is a load research study that was implemented outside the 'normal' South African residential electricity sector, which was the focus of the programme. A phase marks a point in time where the programme underwent a significant change of methodology, such as a change in questionnaire or logger used. The projects and phases are:
+
+* NRS LR 2000
+* NRS LR 1994 -1999
+* NRS LR 2009
+* NRS LR 2010
+* Namibia 2000
+* Non-domestic - Clinics (NonDom_clinics)
+* Non-domestic - Shops (NonDom_shops)
+* Non-domestic - Schools (NonDom_schools)
+
+#### dbo.Groups
+A group is a set of households that was surveyed and whose load profiles were recorded as part of a project or phase within the DLR Programme in a specific year, at a specific location. The ParentID attribute can be used to navigate through the groups structure. Use the SQL code below to get a better understanding of how groups are set up.
+```
+# Top level (DLR/non-domestic)
+
+SELECT *
+  FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL
+  
+# Second level (project; non-domestic ends here)
+
+SELECT *
+  FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
+  (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL)
+  
+# Third level (year; DLR only)
+SELECT *
+  FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
+  (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
+   (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL))
+   ORDER BY ParentID, GroupName
+   
+# Fourth level (location)
+SELECT *
+  FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
+  (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
+   (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
+    (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL))
+   ORDER BY ParentID, GroupName 
+```
+
 ### Supporting Tables
 
 ## Views
