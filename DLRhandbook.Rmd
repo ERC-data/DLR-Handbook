@@ -1,5 +1,5 @@
 ---
-title: "Domestic Load Rresearch Database Handbook"
+title: "Domestic Load Research Database Handbook"
 author: "Wiebke Toussaint"
 date: "19 December 2016"
 output: html_document
@@ -132,20 +132,20 @@ A group is a set of households that was surveyed and whose load profiles were re
 SELECT *
   FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL
   
-# Second level (project; non-domestic ends here)
+# Second level (grouped by PROJECT; lowest level for non-domestic)
 
 SELECT *
   FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
   (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL)
   
-# Third level (year; DLR only)
+# Third level (grouped by YEAR; DLR only)
 SELECT *
   FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
   (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
    (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL))
    ORDER BY ParentID, GroupName
    
-# Fourth level (location)
+# Fourth level (grouped by LOCATION)
 SELECT *
   FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
   (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
@@ -153,6 +153,22 @@ SELECT *
     (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL))
    ORDER BY ParentID, GroupName 
 ```
+#### dbo.Questionnaires
+
+* NLR Main form
+* NRS Form 1994-1999 (pre-2000 questionnaire)
+* Namibia Form
+* Alternative Energies
+* Clinic Questionaire
+* Shop Questionaire
+* School Questionaire
+
+#### dbo.Questions
+Questions and their answers are recorded as one of 3 questions types:
+
+1. long text (blob)
+2. short text (char)
+3. number
 
 ### Supporting Tables
 

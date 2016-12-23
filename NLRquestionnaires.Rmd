@@ -1,0 +1,683 @@
+---
+title: "NLR Socio-demographic Questionnaires"
+author: "Wiebke Toussaint"
+date: "23 December 2016"
+output:
+  html_document:
+    toc: yes
+    toc_float:
+      collapsed: yes
+  pdf_document:
+    toc: yes
+---
+
+## NLR Main Questionnaire
+This questionnaire contains 191 questions. Use the SQL code below to access the NLR Main Questionnaire in the database or browse through the list of questions on the following pages. 
+```
+SELECT *
+  FROM [General_LR4].[dbo].[Questions] WHERE QuestionaireID = 3
+  ORDER BY QuestionID
+```
+
+### MAIN Interviewer and respondent details
+Name of respondent  
+Work Telephone Number  
+Home Telephone number  
+Neighbour's telephone Number  
+Cell phone number  
+How long have you been staying here in this house?
+Interviewer  
+Language  
+
+### MAIN Dwelling details, ownership and use related questions
+Name of head/household  
+Sex of household head: Male  
+Address  
+StandNo  
+Dwelling ownership: Own  
+Small business using electricity 
+Type of small business  
+
+### MAIN Power Quality related questions
+What is the size of the main switch?  
+Do you supply any outbuildings (including loose standing garage) with   
+How long have you had electricity here in this house?  
+PQLightsDim  
+PQGoesOff  
+PQTrips  
+
+### MAIN Building material and structure related questions
+Construction of walls  
+Construction of Roof  
+Floor aread of main house  
+Presence of ceiling  
+Presence of Insulation  
+Number of rooms  
+Watersource  
+Where does your hotwater come from/ other than geyser  
+
+### MAIN Dwelling occupation related questions
+Number of males: <16  
+Number of males: 16-24  
+Number of males: 25 - 34  
+Number of males: 35-49  
+Number of males: 50+  
+Number of females: <16  
+Number of females: 16-24 
+Number of females: 25-34  
+Number of females: 35 - 49  
+Number of femals: 50+  
+
+### MAIN Income related questions
+Do you or does anyone else  get or receive any other money from family or friends outsidethis household?  
+How much money from external source  
+Does this household make any other money from the sale of agricultural produce (e.g. sugar cane,meat, poultry, maize, vegetables, etc.) ?  
+How much is made from the sale of aggricultural products  
+Does this household get any other money fromany other sources like child maintenance,small business etc. ?  
+How much money from Small business etc.  
+How many adults earn salary?  
+How much do all the adults earn per month before deductions?  
+IncomeRefused  
+
+### MAIN Appliance related questions
+ApplianceStove3plateNumber  
+ApplianceStove4plateNumber  
+ApplianceHotplateNumber  
+ApplianceHeaterNumber  
+ApplianceKettleNumber  
+ApplianceIronNumber  
+ApplianceGeyserNumber  
+ApplianceWashingMachineNumber  
+ApplianceTVNumber  
+ApplianceHiFiRadioNumber  
+ApplianceLightsNumber  
+ApplianceFridgeFreezerNumber  
+ApplianceDeepFreezeNumber  
+ApplianceMicrowaveNumber  
+ApplianceTumbleDrierNumber  
+ApplianceOtherNumber  
+ApplianceStove3plateBroken  
+ApplianceStove4plateBroken  
+ApplianceHotplateBroken  
+ApplianceHeaterBroken  
+ApplianceKettleBroken  
+ApplianceIronBroken  
+ApplianceGeyserBroken  
+ApplianceWashingMachineBroken  
+ApplianceMicrowaveBroken  
+ApplianceTumbleDrierBroken  
+ApplianceOtherBroken  
+ApplianceStove3plateUsage  
+ApplianceStove4plateUsage  
+ApplianceHotplateUsage  
+ApplianceHeaterUsage  
+ApplianceKettleUsage  
+ApplianceIronUsage  
+ApplianceGeyserUsage  
+ApplianceWashingMachineUsage  
+ApplianceMicrowaveUsage  
+ApplianceTumbleDrierUsage  
+ApplianceOtherUsage  
+Other appliances  
+
+### MAIN Cooking related questions
+CookAdultsWeekDayBreakFast  
+CookAdultsWeekDayLunch  
+CookAdultsWeekDayDinner  
+CookAdultsSaturdayBreakfast  
+CookAdultsSaturdayLunch  
+CookAdultsSaturdayDinner  
+CookAdultsSundayBreakfast  
+CookAdultsSundayLunch  
+CookAdultsSundayDinner  
+CookChildrenWeekDayBreakfast  
+CookChildrenWeekDayLunch  
+CookChildrenWeekDayDinner  
+CookChildrenSaturdayBreakfast  
+CookChildrenSaturdayLunch  
+CookChildrenSaturdayDinner  
+CookChildrenSundayBreakfast  
+CookChildrenSundayLunch  
+CookChildrenSundayDinner  
+
+### MAIN Alternative fuel sources related questions
+AltFuelCoalCook  
+AltFuelParaffinCook  
+AltFuelGasCook  
+AltFuelWoodCook  
+AltFuelCharcoalCook  
+AltFuelCoalHeat  
+AltFuelParaffinHeat  
+AltFuelGasHeat  
+AltFuelWoodHeat  
+AltFuelCharcoalHeat  
+
+### MAIN Employment related questions
+Head full time employed  
+Head emploed part time  
+Head unemployed  
+Head on pension  
+Head self employed  
+Spouse full time employed  
+Spouse employed part time  
+Spouse unemployed  
+Spouse on pension  
+Spouse self employed  
+Persons older than 16 years: Employed fulltime  
+Persons older than 16 years: Employed parttime  
+Persons older than 16 years: Employed unemployed  
+Persons older than 16 years: Pension  
+Persons older than 16 years: Self employed   
+Persons younger than 16 years: Employed fulltime  
+Persions younger than 16 year : Employed parttime  
+Persons younger than 16 years: Unemployed  
+Persons younger than 16 years: Pension  
+Persions younger than 16 years: Self  
+
+### MAIN Education related questions
+EducHeadNone  
+EducHeadGrade 1  
+EducHeadGrade 2  
+EducHeadStd 1  
+EducHeadStd 2  
+EducHeadStd 3  
+EducHeadStd 4  
+EducHeadStd 5  
+EducHeadStd 6  
+EducHeadStd 7  
+EducHeadStd 8  
+EducHeadStd 9  
+EducHeadMatric  
+EducHeadTertiary  
+EducSpouseNone  
+EducSpouseGrade 1  
+EducSpouseGrade 2  
+EducSpouseStd 1  
+EducSpouseStd 2  
+EducSpouseStd 3  
+EducSpouseStd 4  
+EducSpouseStd 5  
+EducSpouseStd 6  
+EducSpouseStd 7  
+EducSpouseStd 8  
+EducSpouseStd 9  
+EducSpouseMatric  
+EducSpouseTertiary  
+EducOlder16None  
+EducOlder16Grade 1  
+EducOlder16Grade 2  
+EducOlder16Std 1  
+EducOlder16Std 2  
+EducOlder16Std 3  
+EducOlder16Std 4  
+EducOlder16Std 5  
+EducOlder16Std 6  
+EducOlder16Std 7  
+EducOlder16Std 8  
+EducOlder16Std 9  
+EducOlder16Matric  
+EducOlder16Tertiary  
+EducUnder16None  
+EducUnder16Grade 1  
+EducUnder16Grade 2  
+EducUnder16Std 1  
+EducUnder16Std 2  
+EducUnder16Std 3  
+EducUnder16Std 4  
+EducUnder16Std 5  
+EducUnder16Std 6    
+EducUnder16Std 7  
+EducUnder16Std 8  
+EducUnder16Std 9  
+EducUnder16Matric  
+EducUnder16Tertiary  
+
+------------------------------
+
+## NLR pre-2000 Questionnaire
+
+This questionnaire contains 153 questions. Use the SQL code below to access the NLR Main Questionnaire in the database or browse through the list of questions on the following pages. 
+
+```
+SELECT *
+  FROM [General_LR4].[dbo].[Questions] WHERE QuestionaireID = 6
+  ORDER BY QuestionID
+```
+
+### PRE-2000 Interviewer and respondent details
+DateOfEntry  
+InterviewerNo  
+HouseholdNo  
+RespondentName  
+Years  
+TelNo  
+ExtensionNo  
+
+### PRE-2000 Dwelling details, ownership and use related questions
+PostalCode  
+AreaCode  
+PostalAddress  
+ResidentialAddress  
+StandNo  
+TownshipNo  
+HomeLanguage  
+HeadGender  
+OwnRent  
+Business  
+
+### PRE-2000 Power Quality related questions
+MainSwitch  
+SupplyOutBuildings  
+LightDim  
+GoesOff  
+MainTrip  
+BackCheck  
+Edit  
+
+### PRE-2000 Building material and structure related questions
+FloorArea  
+Ceiling  
+Insulation  
+RoofMaterialNo  
+WallMaterialNo  
+Rooms  
+WaterSourceNo  
+
+### PRE-2000 Dwelling occupation related questions
+Females16To24  
+Females25To34  
+Females35To49  
+FemalesOlder50  
+FemalesYounger16  
+Males16To24  
+Males25To34  
+Males35To49  
+MalesOlder50  
+MalesYounger16  
+
+### PRE-2000 Income related questions
+HouseholdMonthlyIncome  
+
+### PRE-2000 Appliance related questions
+Freestanding deep freeze  
+Fridge (or fridge/freezer)  
+Geyser  
+Heater  
+Hotplate  
+Iron  
+Kettle  
+Lights  
+Microwave  
+Music Equipment  
+Other  
+Stove with oven (3 plate)  
+Stove with oven (4 plate)  
+TV  
+Video  
+Washing machine  
+
+### PRE-2000 Cooking related questions
+SaturdayBreakfastChildren  
+SaturdayLunchChildren  
+SaturdaySupperChildren  
+SundayBreakfastChildren  
+SundayLunchChildren  
+SundaySupperChildren  
+WeekdayBreakfastChildren  
+WeekdayLunchChildren  
+WeekdaySupperChildren  
+SaturdayBreakfastAdults  
+SaturdayLunchAdults  
+SaturdaySupperAdults  
+SundayBreakfastAdults  
+SundayLunchAdults  
+SundaySupperAdults  
+WeekdayBreakfastAdults  
+WeekdayLunchAdults  
+WeekdaySupperAdults  
+
+### PRE-2000 Alternative fuel sources related questions
+UseCoalHeating  
+UseCoalCooking  
+UseParaffinHeating  
+UseParaffinCooking  
+UseGasHeating  
+UseGasCooking  
+UseWoodHeating  
+UseWoodCooking  
+UseCharcoalHeating  
+UseCharcoalCooking  
+
+### PRE-2000 Employment related questions
+HeadFull  
+HeadPartTime  
+HeadUnemployed  
+Older16Full  
+Older16PartTime  
+Older16Unemployed  
+SpouseFull  
+SpousePartTime  
+SpouseUnemployed  
+Younger16Full  
+Younger16PartTime  
+Younger16Unemployed  
+
+### PRE-2000 Education related questions
+HeadGrade1  
+HeadGrade2  
+HeadNoSchool  
+HeadStd1  
+HeadStd10  
+HeadStd2  
+HeadStd3  
+HeadStd4  
+HeadStd5  
+HeadStd6    
+HeadStd7  
+HeadStd8  
+HeadStd9  
+HeadTertiary  
+Older16Grade1   
+Older16Grade2  
+Older16NoSchool  
+Older16Std1  
+Older16Std10  
+Older16Std2  
+Older16Std3  
+Older16Std4  
+Older16Std5  
+Older16Std6  
+Older16Std7  
+Older16Std8  
+Older16Std9  
+Older16Tersiary  
+SpouseGrade1  
+SpouseGrade2  
+SpouseNoSchool  
+SpouseStd1  
+SpouseStd10  
+SpouseStd2  
+SpouseStd3  
+SpouseStd4  
+SpouseStd5  
+SpouseStd6  
+SpouseStd7   
+SpouseStd8  
+SpouseStd9  
+SpouseTersiary 
+Younger16Grade1  
+Younger16Grade2  
+Younger16NoSchool  
+Younger16Std1  
+Younger16Std10  
+Younger16Std2  
+Younger16Std3  
+Younger16Std4  
+Younger16Std5  
+Younger16Std6  
+Younger16Std7  
+Younger16Std8  
+Younger16Std9  
+
+## Namibian Questionnaire
+This questionnaire contains 233 questions. Use the SQL code below to access the NLR Main Questionnaire in the database or browse through the list of questions on the following pages. 
+```
+SELECT *
+  FROM [General_LR4].[dbo].[Questions] WHERE QuestionaireID = 7
+  ORDER BY QuestionID
+```
+
+### NAMIBIA Interviewer and respondent related questions
+Name of head/household  
+Name of respondent  
+Work Telephone Number  
+Home Telephone number  
+Neighbour's telephone Number  
+Cell phone number  
+How long have you been staying here in this house?  
+Interviewer  
+Language  
+
+### NAMIBIA Dwelling details, ownership and use related questions
+Address  
+StandNo  
+Sex of household head
+Dwelling ownership
+Type of small business  
+
+### NAMIBIA Power Quality related questions
+What is the size of the main switch?  
+Do you supply any outbuildings (including loose standing garage) with   
+How long have you had electricity here in this house?  
+PQLightsDim  
+PQGoesOff  
+PQTrips  
+
+### NAMIBIA Building material and structure related questions
+Small business using electricity  
+Construction of walls  
+Construction of Roof  
+Floor aread of main house  
+Presence of ceiling  
+Presence of Insulation  
+Number of rooms  
+Watersource  
+
+### NAMIBIA Dwelling occupation related questions
+Number of males: <16  
+Number of males: 16-24  
+Number of males: 25 - 34  
+Number of males: 35-49  
+Number of males: 50+  
+Number of females: <16  
+Number of females: 16-24  
+Number of females: 25-34  
+Number of females: 35 - 49  
+Number of femals: 50+  
+
+### NAMIBIA Employment related questions
+Head full time employed  
+Head emploed part time  
+Head unemployed  
+Head on pension  
+Head self employed  
+Spouse full time employed  
+Spouse employed part time  
+Spouse unemployed  
+Spouse on pension  
+Spouse self employed  
+Persons older than 16 years: Employed fulltime  
+Persons older than 16 years: Employed parttime  
+Persons older than 16 years: Employed unemployed  
+Persons older than 16 years: Pension  
+Persons older than 16 years: Self employed   
+Persons younger than 16 years: Employed fulltime  
+Persions younger than 16 year : Employed parttime  
+Persons younger than 16 years: Unemployed  
+Persons younger than 16 years: Pension  
+Persions younger than 16 years: Self  
+IncomeRefused  
+
+### NAMIBIA Education related questions
+EducHeadNone  
+EducHeadGrade 1  
+EducHeadGrade 2  
+EducHeadStd 1  
+EducHeadStd 2  
+EducHeadStd 3  
+EducHeadStd 4  
+EducHeadStd 5  
+EducHeadStd 6  
+EducHeadStd 7  
+EducHeadStd 8  
+EducHeadStd 9  
+EducHeadMatric  
+EducHeadTertiary  
+EducSpouseNone  
+EducSpouseGrade 1  
+EducSpouseGrade 2  
+EducSpouseStd 1  
+EducSpouseStd 2  
+EducSpouseStd 3  
+EducSpouseStd 4  
+EducSpouseStd 5  
+EducSpouseStd 6  
+EducSpouseStd 7  
+EducSpouseStd 8  
+EducSpouseStd 9  
+EducSpouseMatric  
+EducSpouseTertiary  
+EducOlder16None  
+EducOlder16Grade 1  
+EducOlder16Grade 2  
+EducOlder16Std 1  
+EducOlder16Std 2  
+EducOlder16Std 3  
+EducOlder16Std 4  
+EducOlder16Std 5  
+EducOlder16Std 6  
+EducOlder16Std 7  
+EducOlder16Std 8  
+EducOlder16Std 9  
+EducOlder16Matric  
+EducOlder16Tertiary  
+EducUnder16None  
+EducUnder16Grade 1  
+EducUnder16Grade 2  
+EducUnder16Std 1  
+EducUnder16Std 2  
+EducUnder16Std 3  
+EducUnder16Std 4  
+EducUnder16Std 5  
+EducUnder16Std 6  
+EducUnder16Std 7  
+EducUnder16Std 8  
+EducUnder16Std 9  
+EducUnder16Matric  
+EducUnder16Tertiary  
+
+### NAMIBIA Income related questions
+Do you or does anyone else  get or receive any other money from family or friends outsidethis household?  
+How much money from external source  
+Does this household make any other money from the sale of agricultural produce (e.g. sugar cane  
+How much is made from the sale of aggricultural products  
+Does this household get any other money fromany other sources like child maintenance  
+How much money from Small business etc.  
+How many adults earn salary?  
+How much do all the adults earn per month before deductions?  
+
+### NAMIBIA Appliances related questions
+ApplianceStove3plateNumber  
+ApplianceStove4plateNumber  
+ApplianceHotplateNumber  
+ApplianceHeaterNumber  
+ApplianceKettleNumber  
+ApplianceIronNumber  
+ApplianceGeyserNumber  
+ApplianceWashingMachineNumber  
+ApplianceTVNumber  
+ApplianceHiFiRadioNumber  
+ApplianceLightsNumber  
+ApplianceFridgeFreezerNumber  
+ApplianceDeepFreezeNumber  
+ApplianceMicrowaveNumber  
+ApplianceTumbleDrierNumber  
+ApplianceOtherNumber  
+ApplianceStove3plateWorking  
+ApplianceStove4plateWorking  
+ApplianceHotplateWorking  
+ApplianceHeaterWorking  
+ApplianceKettleWorking  
+ApplianceIronWorking  
+ApplianceGeyserWorking  
+ApplianceWashingMachineWorking  
+ApplianceMicrowaveWorking  
+ApplianceTumbleDrierWorking  
+ApplianceOtherWorking  
+ApplianceStove3plateUsage  
+ApplianceStove4plateUsage  
+ApplianceHotplateUsage  
+ApplianceHeaterUsage  
+ApplianceKettleUsage  
+ApplianceIronUsage  
+ApplianceGeyserUsage  
+ApplianceWashingMachineUsage  
+ApplianceMicrowaveUsage  
+ApplianceTumbleDrierUsage  
+ApplianceOtherUsage  
+Where does your hotwater come from/ other than geyser  
+Other appliances  
+Ownership of underfloor heating  
+Is Underfloor heating working  
+ApplianceUnderFloorHeatingUsage  
+AltApplianceStove3plateNumber  
+AltApplianceStove4plateNumber  
+AltApplianceHotplateNumber  
+AltApplianceHeaterNumber  
+AltApplianceKettleNumber  
+AltApplianceIronNumber  
+AltApplianceGeyserNumber  
+AltApplianceLightsNumber  
+AltApplianceFridgeNumber  
+AltApplianceDeepFreezeNumber  
+AltApplianceOtherNumber  
+AltApplianceStove3plateWorking  
+AltApplianceStove4plateWorking  
+AltApplianceHotplateWorking  
+AltApplianceHeaterWorking  
+AltApplianceKettleWorking  
+AltApplianceIronWorking  
+AltApplianceGeyserWorking  
+AltApplianceOtherWorking  
+AltApplianceStove3plateEnergyUsed  
+AltApplianceStove4plateEnergyUsed  
+AltApplianceHotplateEnergyUsed  
+AltApplianceHeaterEnergyUsed  
+AltApplianceKettleEnergyUsed  
+AltApplianceIronEnergyUsed  
+AltApplianceGeyserEnergyUsed  
+AltApplianceLightsEnergyUsed  
+AltApplianceFridgeEnergyUsed  
+AltApplianceDeepFreezeEnergyUsed  
+AltApplianceOtherEnergyUsed  
+AltApplianceStove3plateUsage  
+AltApplianceStove4plateUsage  
+AltApplianceHotplateUsage  
+AltApplianceHeaterUsage  
+AltApplianceKettleUsage  
+AltApplianceIronUsage  
+AltApplianceGeyserUsage  
+AltApplianceOtherUsage  
+AltApplianceOtherList  
+
+### NAMIBIA Cooking related questions
+CookAdultsWeekDayBreakFast  
+CookAdultsWeekDayLunch  
+CookAdultsWeekDayDinner  
+CookAdultsSaturdayBreakfast  
+CookAdultsSaturdayLunch  
+CookAdultsSaturdayDinner  
+CookAdultsSundayBreakfast  
+CookAdultsSundayLunch  
+CookAdultsSundayDinner  
+CookChildrenWeekDayBreakfast  
+CookChildrenWeekDayLunch  
+CookChildrenWeekDayDinner  
+CookChildrenSaturdayBreakfast  
+CookChildrenSaturdayLunch  
+CookChildrenSaturdayDinner  
+CookChildrenSundayBreakfast  
+CookChildrenSundayLunch  
+CookChildrenSundayDinner  
+
+### NAMIBIA Alternative fuel sources related questions
+AltFuelCoalCook  
+AltFuelParaffinCook  
+AltFuelGasCook  
+AltFuelWoodCook  
+AltFuelCharcoalCook  
+AltFuelCoalHeat  
+AltFuelParaffinHeat  
+AltFuelGasHeat  
+AltFuelWoodHeat  
+AltFuelCharcoalHeat  
