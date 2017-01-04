@@ -13,6 +13,8 @@ This handbook assumes that you have access to a live instance of the DLR databas
 In designing the programme, the cause and effect correlations of previously performed load research studies were mapped and condensed to the parameters that were ultimately monitored in the study.
 
 ##  Data collected with questionnaires
+For a full list of survey questions asked, view the supporting document NLRquestionnaires.Rmd
+
 ### Socio-demographic data: information about the people
 * Number of people living in house
 * Age of home owner
@@ -47,6 +49,43 @@ On average the DLR project has monitored:
 * with +- 60 households per site
 * over a spread of 13 sites
 * monitoring period 5 years/site for Eskom customers, shorter for municipal customers
+
+The number of sites monitored per year as part of the South African DLR are as follows:
+
+Year | Sites
+----|----------
+1994| 1
+1995| 2
+1996| 3
+1997| 11
+1998| 12
+1999| 16
+2000| 15
+2001| 13
+2002| 15
+2003| 12
+2004| 8
+2005| 11
+2006| 11
+2007| 7
+2008| 6
+2009| 10
+2010| 6
+2011| 6
+2012| 10
+2013| 13
+2014| 13
+__TOTAL__|__201__
+
+The Namibian DLR 
+
+Year | Sites
+----|----------
+1999| 3
+2000| 4
+2001| 4
+__TOTAL__|__11__
+
 
 ## Project Evolution over time
 **1993**   
@@ -164,7 +203,7 @@ SELECT *
 * School Questionaire
 
 #### dbo.Questions
-Questions and their answers are recorded as one of 3 questions types:
+Questions and their answers are recorded in a  one of 3 questions types:
 
 1. long text (blob)
 2. short text (char)

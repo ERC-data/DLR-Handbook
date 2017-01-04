@@ -12,7 +12,7 @@ output:
 ---
 
 ## NLR Main Questionnaire
-This questionnaire contains 191 questions. Use the SQL code below to access the NLR Main Questionnaire in the database or browse through the list of questions on the following pages. 
+This questionnaire contains 191 questions. Use the SQL code below to access the NLR Main Questionnaire in the database or browse through the list of variables on the following pages. 
 ```
 SELECT *
   FROM [General_LR4].[dbo].[Questions] WHERE QuestionaireID = 3
