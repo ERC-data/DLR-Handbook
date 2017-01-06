@@ -6,14 +6,17 @@ output: html_document
 ---
 --------------------------------
 
-This handbook assumes that you have access to a live instance of the DLR database on SQL Server. The development of the DLR programme was driven by the need to measure individuals' load profiles as well as understanding **who** the individuals were. 
+This handbook assumes that you have access to a live instance of the DLR database on SQL Server. The development of the DLR programme was driven by the need to measure individuals' load profiles as well as understanding **who** the individuals were.
+
+__\* CODE \*__  
+All SQL code snippets and stored procedures are available on github at [ERC-data/DLR-Handbook/SQLProcedures](https://github.com/ERC-data/DLR-Handbook).
 
 # Data Overview
 ## Parameters monitored
 In designing the programme, the cause and effect correlations of previously performed load research studies were mapped and condensed to the parameters that were ultimately monitored in the study.
 
 ##  Data collected with questionnaires
-For a full list of survey questions asked, view the supporting document NLRquestionnaires.Rmd
+For a full list of survey questions asked, view the supporting document _NLRquestionnaires.Rmd_ .
 
 ### Socio-demographic data: information about the people
 * Number of people living in house
@@ -46,46 +49,48 @@ For a full list of survey questions asked, view the supporting document NLRquest
 On average the DLR project has monitored: 
 
 * 800 households per year
-* with +- 60 households per site
-* over a spread of 13 sites
+* +- 60 households per site
+* 10 sites per year
 * monitoring period 5 years/site for Eskom customers, shorter for municipal customers
 
 The number of sites monitored per year as part of the South African DLR are as follows:
 
-Year | Sites
-----|----------
-1994| 1
-1995| 2
-1996| 3
-1997| 11
-1998| 12
-1999| 16
-2000| 15
-2001| 13
-2002| 15
-2003| 12
-2004| 8
-2005| 11
-2006| 11
-2007| 7
-2008| 6
-2009| 10
-2010| 6
-2011| 6
-2012| 10
-2013| 13
-2014| 13
+Year | Sites | GroupIDs
+----|:----:|:------
+1994| 1 | 34
+1995| 2 | 33
+1996| 3 | 32
+1997| 11 | 76, 31
+1998| 12 | 75 , 30
+1999| 16 | 74, 29
+2000| 15 | 26, 14
+2001| 13 | 97, 99
+2002| 15 | 112, 119
+2003| 12 | 1000006, 1000015
+2004| 8 | 1000021, 1000020
+2005| 11 | 1000030, 1000037
+2006| 11 | 1000047, 1000048
+2007| 7 | 1000061, 1000067
+2008| 6 | 1000074, 1000070
+2009| 10 | 1000080, 1000086
+2010| 6 | 1000091
+2011| 6 | 1000094
+2012| 10 | 1000110
+2013| 13 | 1000121
+2014| 13 | 1000135
 __TOTAL__|__201__
 
 The Namibian DLR 
 
-Year | Sites
-----|----------
-1999| 3
-2000| 4
-2001| 4
+Year | Sites | GroupID
+----|:----:|:----:
+1999| 3 | 90
+2000| 4 | 91
+2001| 4 | 92
 __TOTAL__|__11__
 
+__\* CODE \*__   
+To view group details, run the script _DLR\_groups\_disovery.sql_ in Management Studio (obviously the database must be loaded and connected).
 
 ## Project Evolution over time
 **1993**   
@@ -144,11 +149,8 @@ Every winter the connectivity has been traced from the data logger to each house
 ----------------------------------
 
 # Database Structure
-## Database Diagrams (on SQL)
-#### Link Table
-#### PQ Tables
-
 ## Tables
+Groups, Questions, Answers, Profiles & Link table
 
 ### Primary Tables
 #### dbo.Context
@@ -164,52 +166,49 @@ The context table provides a list of all the projects and project phases that we
 * Non-domestic - Schools (NonDom_schools)
 
 #### dbo.Groups
-A group is a set of households that was surveyed and whose load profiles were recorded as part of a project or phase within the DLR Programme in a specific year, at a specific location. The ParentID attribute can be used to navigate through the groups structure. Use the SQL code below to get a better understanding of how groups are set up.
-```
-# Top level (DLR/non-domestic)
+A group is a set of households that was surveyed and whose load profiles were recorded as part of a project or phase within the DLR Programme in a specific year, at a specific location. The ParentID attribute can be used to navigate through the groups structure. The following hierarchy structure has been applied to groups:
 
-SELECT *
-  FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL
-  
-# Second level (grouped by PROJECT; lowest level for non-domestic)
+Desciption | GroupIDs 
+-----------|---------
+__Top level__ (DLR/non-domestic) | 7, 1000000
+__Second level__ (grouped by PROJECT; lowest level for non-domestic) | 1, 9, 89, 1000001, 1000002, 1000003
+__Third level__ (grouped by YEAR; DLR only) | 14, 26, 29-34, 74-76, 90-92, 97, 99, 112, 119, 1000006, 1000015, 1000020, 1000021, 1000030, 1000037, 1000047, 1000048, 1000061, 1000067, 1000070, 1000074, 1000080, 1000086, 1000091, 1000094, 1000110, 1000121, 1000135
+__Fourth level__ (grouped by LOCATION) | rest
+Namibia | 89, 90, 91, 92
+Clinics | 1000003
+Schools | 1000002
+Shops | 1000001
 
-SELECT *
-  FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
-  (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL)
-  
-# Third level (grouped by YEAR; DLR only)
-SELECT *
-  FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
-  (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
-   (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL))
-   ORDER BY ParentID, GroupName
-   
-# Fourth level (grouped by LOCATION)
-SELECT *
-  FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
-  (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
-   (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
-    (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL))
-   ORDER BY ParentID, GroupName 
-```
 #### dbo.Questionnaires
+7 different surveys have been created and administred to different users to gather socio-economic data, dwelling and appliance information. 
 
-* NLR Main form
-* NRS Form 1994-1999 (pre-2000 questionnaire)
-* Namibia Form
-* Alternative Energies
-* Clinic Questionaire
-* Shop Questionaire
-* School Questionaire
+QuestionnaireID | Description
+---|---
+3 | NLR Main form
+6 | NRS Form 1994-1999 (pre-2000 questionnaire)
+7 | Namibia Form
+8 | Alternative Energies
+1000000 | Clinic Questionaire
+1000001 | Shop Questionaire
+1000002 | School Questionaire
 
 #### dbo.Questions
-Questions and their answers are recorded in a  one of 3 questions types:
+Each question has an ID and is associated with one of the seven questionaires. The ColumnNo field can be used to match a survey answer of a specific type to a question. Questions and their answers are recorded as one of 3 types:
 
-1. long text (blob)
-2. short text (char)
-3. number
+Datatype | Description | db Table
+---|---|---
+1 | long text (blob) | dbo.Answers_blob
+2 | short text (char) | dbo.Answers_char
+3 | number | dbo.Answers_number
+
+#### Link Table
 
 ### Supporting Tables
+
+## Database Diagrams (on SQL)
+
+#### PQ Tables
+
 
 ## Views
 
