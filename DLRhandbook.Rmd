@@ -229,7 +229,11 @@ Datatype | Description | db Table
 3 | number | __dbo.Answers_number__
 
 ### Profile Tables
+A total of 34976 load profiles have been recorded over the duration of the DLR Programme. One customer may have several load profiles
+
 #### dbo.Profiletable
+__Warning__: This table is _huge_ as it contains most of the data in the database. Operations on this table can take a long time and you should avoid evaluating expressions on the entire table.
+
 #### dbo.ProfileSummaryTable
 
 ### Link Table
