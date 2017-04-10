@@ -2,18 +2,26 @@
 title: "Domestic Load Research Database Handbook"
 author: "Wiebke Toussaint"
 date: "19 December 2016"
-output: html_document
+output:
+  html_document:
+    toc: yes
+    toc_float:
+      collapsed: yes
+  pdf_document:
+    toc: yes
 ---
---------------------------------
 
-This handbook assumes that you have access to a live instance of the DLR database on SQL Server. The development of the DLR programme was driven by the need to measure individuals' load profiles as well as understanding **who** the individuals were. 
+This handbook assumes that you have access to a live instance of the DLR database on SQL Server. The development of the DLR programme was driven by the need to measure individuals' load profiles as well as understanding **who** the individuals are.
+
+__\* CODE \*__  
+All SQL code snippets and stored procedures are available on github at [ERC-data/DLR-Handbook/SQLProcedures](https://github.com/ERC-data/DLR-Handbook).
 
 # Data Overview
 ## Parameters monitored
 In designing the programme, the cause and effect correlations of previously performed load research studies were mapped and condensed to the parameters that were ultimately monitored in the study.
 
 ##  Data collected with questionnaires
-For a full list of survey questions asked, view the supporting document NLRquestionnaires.Rmd
+For a full list of survey questions asked, view the supporting document _NLRquestionnaires.Rmd_ .
 
 ### Socio-demographic data: information about the people
 * Number of people living in house
@@ -41,51 +49,53 @@ For a full list of survey questions asked, view the supporting document NLRquest
 
 ----------------------
 
-# Project Timeline 1993 - 2014
+# Project Timeline
 ## Sites & number of people surveyed over the history of the project
 On average the DLR project has monitored: 
 
 * 800 households per year
-* with +- 60 households per site
-* over a spread of 13 sites
+* +- 60 households per site
+* 10 sites per year
 * monitoring period 5 years/site for Eskom customers, shorter for municipal customers
 
 The number of sites monitored per year as part of the South African DLR are as follows:
 
-Year | Sites
-----|----------
-1994| 1
-1995| 2
-1996| 3
-1997| 11
-1998| 12
-1999| 16
-2000| 15
-2001| 13
-2002| 15
-2003| 12
-2004| 8
-2005| 11
-2006| 11
-2007| 7
-2008| 6
-2009| 10
-2010| 6
-2011| 6
-2012| 10
-2013| 13
-2014| 13
-__TOTAL__|__201__
+Year | Sites | GroupIDs (ParentID)
+----|:----:|:------
+1994| 1 | 34
+1995| 2 | 33
+1996| 3 | 32
+1997| 11 | 76, 31
+1998| 12 | 75 , 30
+1999| 16 | 74, 29
+2000| 15 | 26, 14
+2001| 13 | 97, 99
+2002| 15 | 112, 119
+2003| 12 | 1000006, 1000015
+2004| 8 | 1000021, 1000020
+2005| 11 | 1000030, 1000037
+2006| 11 | 1000047, 1000048
+2007| 7 | 1000061, 1000067
+2008| 6 | 1000074, 1000070
+2009| 10 | 1000080, 1000086
+2010| 6 | 1000091
+2011| 6 | 1000094
+2012| 10 | 1000110
+2013| 13 | 1000121
+2014| 13 | 1000135
+__TOTAL__|__201__|  |
 
 The Namibian DLR 
 
-Year | Sites
-----|----------
-1999| 3
-2000| 4
-2001| 4
-__TOTAL__|__11__
+Year | Sites | GroupID
+----|:----:|:----:
+1999| 3 | 90
+2000| 4 | 91
+2001| 4 | 92
+__TOTAL__|__11__|   |
 
+__\* CODE \*__   
+To view group details, run the script _DLR\_groups\_disovery.sql_ in Management Studio (obviously the database must be loaded and connected).
 
 ## Project Evolution over time
 **1993**   
@@ -144,13 +154,24 @@ Every winter the connectivity has been traced from the data logger to each house
 ----------------------------------
 
 # Database Structure
-## Database Diagrams (on SQL)
-#### Link Table
-#### PQ Tables
+The database consists of database diagrams, tables and views that allow the user to engage with the data in the database.
+
+*  __Tables__ contain all primary and supplementary data in its raw form. They are the heart of the database. Their normalised form makes them less userfriendly.
+*  __Views__ contain convenient table joins and subsets that make it easier to engage with the data. Look for views that contain the data you need before looking for tables.
+*  __Database__ diagrams provide a graphic representation of how tables connect to each other. Use this to get an overview of the database structure.
+
+This section explains the data contained in the primary tables and points out useful views.
 
 ## Tables
+The important tables can be categorised into three groups:
+ 
+* __Groups__ - contain contextual information and data related to different phases of the DLR Project
+* __Questions and Answers__ - contain data related to survey questions and answers
+* __Profiles__ - contain data related to user load profiles 
 
-### Primary Tables
+The __Link Table__ links these three table categories together.
+
+### Groups
 #### dbo.Context
 The context table provides a list of all the projects and project phases that were executed as part of the DLR Programme. A project is a load research study that was implemented outside the 'normal' South African residential electricity sector, which was the focus of the programme. A phase marks a point in time where the programme underwent a significant change of methodology, such as a change in questionnaire or logger used. The projects and phases are:
 
@@ -164,54 +185,76 @@ The context table provides a list of all the projects and project phases that we
 * Non-domestic - Schools (NonDom_schools)
 
 #### dbo.Groups
-A group is a set of households that was surveyed and whose load profiles were recorded as part of a project or phase within the DLR Programme in a specific year, at a specific location. The ParentID attribute can be used to navigate through the groups structure. Use the SQL code below to get a better understanding of how groups are set up.
-```
-# Top level (DLR/non-domestic)
+A group is a set of households that was surveyed and whose load profiles were recorded as part of a project or phase within the DLR Programme in a specific year, at a specific location. The ParentID attribute can be used to navigate through the groups structure. The following hierarchy structure has been applied to groups:
 
-SELECT *
-  FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL
-  
-# Second level (grouped by PROJECT; lowest level for non-domestic)
+Desciption | GroupIDs 
+-----------|---------
+|__Top level__ (DLR/non-domestic) | 7, 1000000
+|__Second level__ (grouped by PROJECT; lowest level for non-domestic) | 1, 9, 89, 1000001, 1000002, 1000003
+|__Third level__ (grouped by YEAR; DLR only) | 14, 26, 29-34, 74-76, 90-92, 97, 99, 112, 119, 1000006, 1000015, 1000020, 1000021, 1000030, 1000037, 1000047, 1000048, 1000061, 1000067, 1000070, 1000074, 1000080, 1000086, 1000091, 1000094, 1000110, 1000121, 1000135
+|__Fourth level__ (grouped by LOCATION) | rest
+|   |   |
+|___Special IDs___|   |   
+|Namibia | 63, 64, 65, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96
+|Clinics | 1000003
+|Schools | 1000002
+|Shops | 1000001
 
-SELECT *
-  FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
-  (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL)
-  
-# Third level (grouped by YEAR; DLR only)
-SELECT *
-  FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
-  (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
-   (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL))
-   ORDER BY ParentID, GroupName
-   
-# Fourth level (grouped by LOCATION)
-SELECT *
-  FROM [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
-  (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
-   (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IN
-    (SELECT GroupID FROM  [General_LR4].[dbo].[Groups] WHERE [ParentID] IS NULL))
-   ORDER BY ParentID, GroupName 
-```
-#### dbo.Questionnaires
+### Question & Answer Tables
+Six primary tables exist that contain the data related to the socio-demographic and dwelling surveys given to DLR participants. The tables are: Questionaires, Questions, Answers, Answers_blob, Answers_char and Answers_number. These tables have been conveniently combined into several views which are listed in the Questionaires table below. _It is strongly advised that database users make use of the views, rather than tracing the complicated connection of the tables._
 
-* NLR Main form
-* NRS Form 1994-1999 (pre-2000 questionnaire)
-* Namibia Form
-* Alternative Energies
-* Clinic Questionaire
-* Shop Questionaire
-* School Questionaire
+#### dbo.Questionaires
+7 different surveys have been created and administred to different users to gather socio-economic data, dwelling and appliance information. 
+
+QuestionnaireID | Description | ViewName | Number of respondents
+---|---|---|---
+3 | NLR Main form | NLR | 7739
+6 | NRS Form 1994-1999 (pre-2000 questionnaire) | NLR99 | 2503
+7 | Namibia Form | Namibia | 248
+8 | Alternative Energies | AltEnergies | 6
+1000000 | Clinic Questionaire | ND_Clinic | 12
+1000001 | Shop Questionaire | ND_Shop | 25
+1000002 | School Questionaire | ND_School | 21
 
 #### dbo.Questions
-Questions and their answers are recorded in a  one of 3 questions types:
+Each question has an ID and is associated with one of the seven questionaires via the QuestionaireID field. The ColumnNo field can be used to match a survey answer of a specific data type to a question (match Answers.Datatype to relevant dbo.Answers_table and Answers.ColumnNo to the respective column in that table). 
 
-1. long text (blob)
-2. short text (char)
-3. number
+#### dbo.Answers_
+The __dbo.Answers__ table connects each AnswerID to a QuestionaireID, which is important to connect responses to their relevant questions in the dbo.Questions table. Questions and their answers are recorded as one of 3 data types. Each data type has its responses recorded in a separate table:
 
-### Supporting Tables
+Datatype | Description | db Table
+---|---|---
+1 | long text (blob) | __dbo.Answers_blob__
+2 | short text (char) | __dbo.Answers_char__
+3 | number | __dbo.Answers_number__
+
+### Profile Tables
+A total of 34976 load profiles have been recorded over the duration of the DLR Programme. One customer may have several load profiles
+
+#### dbo.Profiletable
+__Warning__: This table is _huge_ as it contains most of the data in the database. Operations on this table can take a long time and you should avoid evaluating expressions on the entire table.
+
+#### dbo.ProfileSummaryTable
+
+### Link Table
+Connects groups, answers and profiles.
 
 ## Views
+### Question & Answer Views
+A view has been created for each questionaire and the two NLR questionaires have been combined into an additional view called NLR_ALL. A second additional view has been created for the NLR to remove all rows with a 0 GroupID (NLR_NoZeroGroup).They are a join of the responses in all three answer tables (blob, char and number) and include the GroupID to which the answer belongs. The Q&A views use the short form the questions as column headers. This makes the Q&A views _much easier to use_ than the tables. 
+
+|Survey Group | View Names
+|---|---
+|NLR | NLR
+|    | NLR99
+|    | NLR_NoZeroGroup
+|    | NLR_ALL
+|Namibia | Nambia
+|Non Domestic Load Research | ND_Clinic
+|    | ND_School
+|    | ND_Shop
+
+## Database Diagrams (on SQL)
 
 ## Stored Procedures
 
