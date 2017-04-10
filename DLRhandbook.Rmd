@@ -11,7 +11,7 @@ output:
     toc: yes
 ---
 
-This handbook assumes that you have access to a live instance of the DLR database on SQL Server. The development of the DLR programme was driven by the need to measure individuals' load profiles as well as understanding **who** the individuals were.
+This handbook assumes that you have access to a live instance of the DLR database on SQL Server. The development of the DLR programme was driven by the need to measure individuals' load profiles as well as understanding **who** the individuals are.
 
 __\* CODE \*__  
 All SQL code snippets and stored procedures are available on github at [ERC-data/DLR-Handbook/SQLProcedures](https://github.com/ERC-data/DLR-Handbook).
